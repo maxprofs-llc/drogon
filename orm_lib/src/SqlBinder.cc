@@ -31,8 +31,8 @@ void SqlBinder::exec()
         // nonblocking mode,default mode
         // Retain shared_ptrs of parameters until we get the result;
         client_.execSql(
-            sqlView_.data(),
-            sqlView_.length(),
+            sqlViewPtr_,
+            sqlViewLength_,
             parametersNumber_,
             std::move(parameters_),
             std::move(lengths_),
@@ -79,8 +79,8 @@ void SqlBinder::exec()
         auto f = pro->get_future();
 
         client_.execSql(
-            sqlView_.data(),
-            sqlView_.length(),
+            sqlViewPtr_,
+            sqlViewLength_,
             parametersNumber_,
             std::move(parameters_),
             std::move(lengths_),
